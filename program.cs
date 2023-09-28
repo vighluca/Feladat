@@ -119,7 +119,14 @@ class Program
 
     static void MentKosar()
     {
-        using (StreamWriter sw = new StreamWriter("kosar.txt"))
+        string fajlNev = "kosar.txt";
+
+        if (!File.Exists(fajlNev))
+        {
+            File.Create(fajlNev).Close();
+        }
+
+        using (StreamWriter sw = new StreamWriter(fajlNev))
         {
             foreach (var termek in kosar)
             {
@@ -128,6 +135,7 @@ class Program
         }
         Console.WriteLine("A kosár tartalma el lett mentve a 'kosar.txt' fájlba.");
     }
+
 }
 
 class Termek
